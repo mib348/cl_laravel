@@ -17,4 +17,9 @@ class FilmsController extends Controller
         $FilmsModel = new FilmsModel();
         return $FilmsModel->AddData($request);
     }
+    
+    public function GetData(Request $request){
+        $FilmsModel = new FilmsModel();
+        return $FilmsModel->GetData($request);
+    }
 }

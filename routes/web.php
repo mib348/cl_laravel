@@ -12,13 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(!Auth::check())
+        return view('auth.login');
+    else
+        return view('films');
 });
 
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/films', 'HomeController@index')->name('films');
+    Route::post('/films', 'FilmsController@GetData')->name('getFilms');
     Route::get('/manage_films', 'FilmsController@index')->name('manage_films');
     Route::post('/films/save', 'FilmsController@save')->name('savefilms');
 });

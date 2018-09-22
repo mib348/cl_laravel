@@ -11,6 +11,7 @@ class FilmsModel extends Model
     public function AddData($request) {
         $data = [];
         $data['f_name'] = $request->strName;
+        $data['f_slug'] = $request->strSlug;
         $data['f_desc'] = $request->strDesc;
         
         if (!empty($request->file))
@@ -49,4 +50,33 @@ class FilmsModel extends Model
     }
     
     
+    public function GetData($request){
+        $html = "";
+        if ($request->stepType == "back")
+            $arrRec = DB::table("tblFilms")->where('f_id', "<", $request->nFilmId)->orderByRaw('f_id DESC')->get();
+        else if ($request->stepType == "next")
+            $arrRec = DB::table("tblFilms")->where('f_id', ">", $request->nFilmId)->orderByRaw('f_id ASC')->get();
+        else
+            $arrRec = DB::table("tblFilms")->orderByRaw('f_id DESC')->get();
+            
+        $arrData = $arrRec[0];
+//         foreach ($arrRec as $arrData){
+            $html .= '<tr id="' . $arrData->f_id . '" slug="' . $arrData->f_slug . '">
+                            <td><a href="' . url('/films/' . $arrData->f_slug) . '" class="text-info">' . $arrData->f_name . '</a></td>
+                            <td>' . $arrData->f_ticket_price . '</td>
+                            <td>' . date("d F, Y", strtotime($arrData->f_release_date)) . '</td>
+                        </tr>';
+//         }
+        
+        $html .= '<tr>';
+            $html .= '<td colspan="4" class="text-right">';
+            if (DB::table("tblFilms")->where('f_id', "<", $arrData->f_id)->count())
+                $html .= '<a class="back_btn btn btn-secondary" data-id="' . $arrData->f_id . '">Back</a>';
+            if (DB::table("tblFilms")->where('f_id', ">", $arrData->f_id)->count())
+                $html .= '<a class="btn btn-secondary next_btn" data-id="' . $arrData->f_id . '">Next</a>';
+            $html .= '</td>';
+        $html .= '</tr>';
+        
+        return $html;
+    }
 }

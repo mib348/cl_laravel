@@ -24,6 +24,14 @@
                     	</div>
                     	<div class="form-group row">
                     		<div class="col-md-3 text-right">
+                    			<label class="label">Slug</label>
+                    		</div>
+                    		<div class="col-md-9">
+                    			<input type="text"  id="strSlug" name="strSlug" class="form-control"/>
+                    		</div>
+                    	</div>
+                    	<div class="form-group row">
+                    		<div class="col-md-3 text-right">
                     			<label class="label">Description</label>
                     		</div>
                     		<div class="col-md-9">
