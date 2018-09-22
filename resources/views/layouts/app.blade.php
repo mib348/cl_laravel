@@ -63,7 +63,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        	@if(basename($_SERVER['REQUEST_URI']) == "register")
+                        	@if(basename($_SERVER['REQUEST_URI']) == "register" || (!Auth::check() && basename($_SERVER['REQUEST_URI']) != "login"))
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             @endIf
                             @if(basename($_SERVER['REQUEST_URI']) == "login")

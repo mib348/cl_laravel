@@ -24,14 +24,14 @@ Route::get('/home', function () {
 });
 
 Route::get('/films', 'FilmsController@home')->name('films');
+Route::post('/films', 'FilmsController@GetData')->name('getFilms');
 
 Auth::routes();
 
-// Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
     Route::get('/films/create', 'FilmsController@index')->name('manage_films');
     Route::post('/films/save', 'FilmsController@save')->name('savefilms');
     Route::post('/films/saveComment', 'FilmsController@saveComment')->name('saveComment');
-// });
+});
 
 Route::get('/films/{slug}', 'FilmsController@GetDetail')->name('view_film');
-Route::post('/films', 'FilmsController@GetData')->name('getFilms');
