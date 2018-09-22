@@ -22,4 +22,11 @@ class FilmsController extends Controller
         $FilmsModel = new FilmsModel();
         return $FilmsModel->GetData($request);
     }
+    
+    public function GetDetail(Request $request){
+        $FilmsModel = new FilmsModel();
+        $arrData = $FilmsModel->GetDetail($request);
+//         print_r($arrData);exit;
+        return view('films_detail', $arrData);
+    }
 }

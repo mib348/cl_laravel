@@ -23,6 +23,7 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::get('/films', 'HomeController@index')->name('films');
     Route::post('/films', 'FilmsController@GetData')->name('getFilms');
-    Route::get('/manage_films', 'FilmsController@index')->name('manage_films');
+    Route::get('/films/create', 'FilmsController@index')->name('manage_films');
+    Route::get('/films/{slug}', 'FilmsController@GetDetail')->name('view_film');
     Route::post('/films/save', 'FilmsController@save')->name('savefilms');
 });

@@ -40,8 +40,8 @@ class FilmsModel extends Model
         return $nRef;
     }
     
-    public function GetDataDetail($request) {
-        return (array) DB::table("tblFilms")->find($request->nId);
+    public function GetDetail($request) {
+        return (array) DB::table("tblFilms")->where('f_slug', $request->slug)->get()->toArray()[0];
     }
     
     public function DeleteData($request) {
