@@ -1,0 +1,6 @@
+	.label{font-weight: bold;}
+	.label-info {    background-color: #5bc0de;    padding: 0px 5px;}
+	.fa-star{cursor: pointer;font-size: 20px;color:lightgray;}
+/* 	.fa-star:hover{color:goldenrod;} */
+	.fa-star.checked{color:goldenrod;}
+	img{max-width: 100%;}

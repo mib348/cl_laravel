@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+});
+
+Auth::routes();
+
+Route::middleware('auth')->group(function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/manage_films', 'FilmsController@index')->name('manage_films');
+    Route::post('/films/save', 'FilmsController@save')->name('savefilms');
 });
