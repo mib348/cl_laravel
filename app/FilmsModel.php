@@ -11,7 +11,7 @@ class FilmsModel extends Model
     public function AddData($request) {
         $data = [];
         $data['f_name'] = $request->strName;
-        $data['f_slug'] = $request->strSlug;
+        $data['f_slug'] = strtolower(str_replace(" ", "-", $request->strSlug));
         $data['f_desc'] = $request->strDesc;
         
         if (!empty($request->file))
@@ -31,7 +31,7 @@ class FilmsModel extends Model
         else
             $nRef = DB::table("tblFilms")->insertGetId($data);
         
-        if (!empty($request->strImage)){
+        if (!empty($request->file)){
             $request->id = $nRef;
             $UploadFileModel = new UploadFileModel();
             $UploadFileModel->UploadFile($request);

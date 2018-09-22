@@ -10,7 +10,7 @@ class UploadFileModel extends Model
     public function UploadFile($request) {
         //         Storage::put('public', $arrFile);
         return Storage::putFileAs(
-            'public', $request->file, $request->id . "-" . $request->file->getClientOriginalName()
-            );
+                                'public', $request->file, $request->id . "-" . $request->file->getClientOriginalName()
+                                );
     }
 }

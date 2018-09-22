@@ -36,10 +36,9 @@
                     			<label class="label">Photo</label>
                     		</div>
                     		<div class="col-md-9">
-			        			@if(!empty($image))
-                    			<br>
+			        			@if(!empty($f_photo))
                     			<div class="image">
-                    				<img alt="featured image" src="{{ asset('storage') . '/' . $f_id . '-' . $f_photo }}" style="height:28vh;">
+                    				<img alt="featured image" src="{{ asset('storage') . '/' . $f_id . '-' . $f_photo }}" style="height:50vh;">
                     			</div>
                     			@endif
                     		</div>
@@ -73,7 +72,7 @@
                     			<label class="label">Rating</label>
                     		</div>
                     		<div class="col-md-9">
-                    			<input type="hidden" id="nRating" name="nRating"  value=""/>
+                    			<input type="hidden" id="nRating" name="nRating"  value="{{$f_rating}}"/>
                     			<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                     		</div>
                     	</div>
@@ -91,5 +90,10 @@
         </div>
     </div>
 </div>
-
+<script>
+	$(".fa-star").each(function(){
+        if($(this).index() <= $("#nRating").val())
+            $(this).addClass("checked");
+	});
+</script>
 @endsection
