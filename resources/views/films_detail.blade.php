@@ -36,9 +36,13 @@
                     			<label class="label">Photo</label>
                     		</div>
                     		<div class="col-md-9">
-			        			@if(!empty($f_photo))
+			        			@if(!empty($f_photo) && $f_photo != 'trivia11.jpg')
                     			<div class="image">
                     				<img alt="featured image" src="{{ asset('storage') . '/' . $f_id . '-' . $f_photo }}" style="height:50vh;">
+                    			</div>
+                    			@else
+                    			<div class="image">
+                    				<img alt="featured image" src="{{ asset('storage') . '/trivia11.jpg' }}" style="height:50vh;">
                     			</div>
                     			@endif
                     		</div>
