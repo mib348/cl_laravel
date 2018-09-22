@@ -40,8 +40,22 @@ class FilmsModel extends Model
         return $nRef;
     }
     
+    public function saveComment($request) {
+        $data = [];
+        $data['c_film_id'] = $request->nId;
+        $data['c_name'] = $request->strName;
+        $data['c_comment'] = $request->strDesc;
+        
+        $nRef = DB::table("tblComments")->insertGetId($data);
+        return $nRef;
+    }
+    
     public function GetDetail($request) {
         return (array) DB::table("tblFilms")->where('f_slug', $request->slug)->get()->toArray()[0];
+    }
+    
+    public function GetComment($request) {
+        return (array) DB::table("tblComments")->where('c_film_id', $request->f_id)->get()->toArray();
     }
     
     public function DeleteData($request) {

@@ -12,18 +12,26 @@
 */
 
 Route::get('/', function () {
-    if(!Auth::check())
-        return view('auth.login');
-    else
-        return view('films');
+    return redirect('/films');
+//     if(!Auth::check())
+//         return view('auth.login');
+//     else
+//         return view('films');
 });
+
+Route::get('/home', function () {
+    return redirect('/films');
+});
+
+Route::get('/films', 'FilmsController@home')->name('films');
 
 Auth::routes();
 
-Route::middleware('auth')->group(function(){
-    Route::get('/films', 'HomeController@index')->name('films');
-    Route::post('/films', 'FilmsController@GetData')->name('getFilms');
+// Route::middleware('auth')->group(function(){
     Route::get('/films/create', 'FilmsController@index')->name('manage_films');
-    Route::get('/films/{slug}', 'FilmsController@GetDetail')->name('view_film');
     Route::post('/films/save', 'FilmsController@save')->name('savefilms');
-});
+    Route::post('/films/saveComment', 'FilmsController@saveComment')->name('saveComment');
+// });
+
+Route::get('/films/{slug}', 'FilmsController@GetDetail')->name('view_film');
+Route::post('/films', 'FilmsController@GetData')->name('getFilms');
